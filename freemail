@@ -1,0 +1,75 @@
+#!/usr/bin/env node
+const parser     = require('meow');
+const fs         = require('fs');
+const path       = require('path');
+const split      = require('split');
+const free       = load('freemail/data/free.txt');
+const disposable = load('freemail/data/disposable.txt');
+
+const cli = parser(`
+  Usage
+    $ freemail [options] <file>
+
+  Matches both free and disposable emails by default.
+
+  Options
+    -d, --disposable  Only match disposable emails
+    -f, --free        Only match free emails
+    -i, --inverse     Print emails that don't match
+
+  Examples
+    $ freemail ./path/to/file
+`, {
+  boolean: ['d', 'f', 'i'],
+  alias: {
+    d: 'disposable',
+    f: 'free',
+    i: 'inverse'
+  }
+});
+
+const file = cli.input[0];
+if (!cli.input.length) {
+  console.error('Missing file');
+  process.exit(1);
+} else if (!isFile(file)) {
+  console.error('Invalid file path');
+  process.exit(1);
+}
+
+fs.createReadStream(file)
+  .pipe(split())
+  .on('data', (line) => {
+    if (cli.flags.inverse ^ match(line)) console.log(line);
+  });
+
+function load(path) {
+  return fs.readFileSync(require.resolve(path), 'utf8')
+    .split('\n')
+    .reduce((res, cur) => {
+      res[cur] = true;
+      return res;
+    }, {});
+}
+
+function isFile(path) {
+  try {
+    const stat = fs.lstatSync(path);
+    return !stat.isDirectory();
+  } catch (err) {
+    return false;
+  }
+}
+
+function match(line) {
+  const split = line.split('@');
+  const domain = split[1] || split[0];
+
+  if (cli.flags.disposable) {
+    return !!disposable[domain];
+  } else if (cli.flags.free) {
+    return !!free[domain];
+  } else {
+    return !!disposable[domain] || !!free[domain];
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "name": "freemail-cli",
+  "version": "0.0.1",
+  "description": "Filters or selects free/personal/disposable email addresses",
+  "bin": "freemail",
+  "engines": {
+    "node": ">=4"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danielstjules/freemail-cli.git"
+  },
+  "keywords": [
+    "free",
+    "disposable",
+    "personal",
+    "email",
+    "company",
+    "address",
+    "gmail"
+  ],
+  "author": "Daniel St. Jules <danielst.jules@gmail.com> (http://danielstjules.com/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/danielstjules/freemail-cli/issues"
+  },
+  "homepage": "https://github.com/danielstjules/freemail-cli#readme",
+  "dependencies": {
+    "freemail": "^1.4.0",
+    "meow": "^3.7.0",
+    "split": "^1.0.0"
+  }
+}
