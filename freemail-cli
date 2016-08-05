@@ -8,7 +8,7 @@ const disposable = load('freemail/data/disposable.txt');
 
 const cli = parser(`
   Usage
-    $ freemail [options] <file>
+    $ freemail-cli [options] <file>
 
   Matches both free and disposable emails by default.
 
@@ -18,7 +18,7 @@ const cli = parser(`
     -i, --inverse     Print emails that don't match
 
   Examples
-    $ freemail ./path/to/file
+    $ freemail-cli ./path/to/file
 `, {
   boolean: ['d', 'f', 'i'],
   alias: {

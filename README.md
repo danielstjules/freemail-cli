@@ -6,7 +6,7 @@ Filters or selects free/personal/disposable email addresses
 Filters or selects free/personal/disposable email addresses
 
 Usage
-  $ freemail [options] <file>
+  $ freemail-cli [options] <file>
 
 Matches both free and disposable emails by default.
 
@@ -16,7 +16,7 @@ Options
   -i, --inverse     Print emails that don't match
 
 Examples
-  $ freemail ./path/to/file
+  $ freemail-cli ./path/to/file
 ```
 
 #### Installation
