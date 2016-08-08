@@ -29,7 +29,7 @@
   },
   "homepage": "https://github.com/danielstjules/freemail-cli#readme",
   "dependencies": {
-    "freemail": "^1.4.0",
+    "freemail": "1.4.0",
     "meow": "^3.7.0",
     "split": "^1.0.0"
   }
