@@ -19,7 +19,7 @@ Examples
 
 #### Overview
 
-Free emails include gmail.com, yahoo.com, and all those listed in [this file](https://github.com/danielstjules/willwhite/blob/master/data/free.txt). Disposable emails include mailinator.com, guerillamail.com, and [all others here](https://github.com/danielstjules/willwhite/blob/master/data/disposable.txt).
+Free emails include gmail.com, yahoo.com, and all those listed in [this file](https://github.com/willwhite/freemail/blob/master/data/free.txt). Disposable emails include mailinator.com, guerillamail.com, and [all others here](https://github.com/willwhite/freemail/blob/master/data/disposable.txt).
 
 ```bash
 $ cat emails.csv
