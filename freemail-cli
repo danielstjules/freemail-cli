@@ -3,28 +3,26 @@ const parser     = require('meow');
 const fs         = require('fs');
 const path       = require('path');
 const split      = require('split');
-const free       = load('freemail/data/free.txt');
 const disposable = load('freemail/data/disposable.txt');
+const free       = extend(load('freemail/data/free.txt'), disposable);
 
 const cli = parser(`
   Usage
     $ freemail-cli [options] <file>
 
-  Matches both free and disposable emails by default.
+  Matches free emails, including disposable, by default
 
   Options
     -d, --disposable  Only match disposable emails
-    -f, --free        Only match free emails
     -i, --inverse     Print emails that don't match
 
   Examples
     $ freemail-cli ./path/to/file
     $ cat ./path/to/file | freemail-cli
 `, {
-  boolean: ['d', 'f', 'i'],
+  boolean: ['d', 'i'],
   alias: {
     d: 'disposable',
-    f: 'free',
     i: 'inverse'
   }
 });
@@ -71,4 +69,19 @@ function match(line) {
   } else {
     return !!disposable[domain] || !!free[domain];
   }
+}
+
+function extend(a, b) {
+  const res = {};
+  var key;
+
+  for (key in a) {
+    res[key] = a[key];
+  }
+
+  for (key in b) {
+    res[key] = b[key];
+  }
+
+  return res;
 }
