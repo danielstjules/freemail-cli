@@ -1,7 +1,5 @@
 # freemail-cli
 
-Filters or selects free/personal/disposable email addresses
-
 ```
 Filters or selects free/personal/disposable email addresses
 
@@ -17,6 +15,7 @@ Options
 
 Examples
   $ freemail-cli ./path/to/file
+  $ cat ./path/to/file | freemail-cli
 ```
 
 #### Installation
