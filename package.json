@@ -1,6 +1,6 @@
 {
   "name": "freemail-cli",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Filters or selects free and disposable email addresses",
   "bin": "freemail-cli",
   "engines": {
