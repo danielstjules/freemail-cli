@@ -19,6 +19,7 @@ const cli = parser(`
 
   Examples
     $ freemail-cli ./path/to/file
+    $ cat ./path/to/file | freemail-cli
 `, {
   boolean: ['d', 'f', 'i'],
   alias: {
@@ -29,15 +30,13 @@ const cli = parser(`
 });
 
 const file = cli.input[0];
-if (!cli.input.length) {
-  console.error('Missing file');
-  process.exit(1);
-} else if (!isFile(file)) {
+if (file && !isFile(file)) {
   console.error('Invalid file path');
   process.exit(1);
 }
 
-fs.createReadStream(file)
+const readStream = file ? fs.createReadStream(file) : process.stdin;
+readStream
   .pipe(split())
   .on('data', (line) => {
     if (cli.flags.inverse ^ match(line)) console.log(line);
