@@ -61,7 +61,7 @@ function isFile(path) {
 }
 
 function match(line) {
-  const split = line.split('@');
+  const split = line.toLowerCase().split('@');
   const domain = split[1] || split[0];
 
   if (cli.flags.disposable) {
